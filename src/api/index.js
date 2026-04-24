@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://gambia-price-tracker-api.onrender.com/api",
+  baseURL: "https://gambia-price-tracker.onrender.com/",
 });
 
 export const getCrops = () => api.get("/crops");
