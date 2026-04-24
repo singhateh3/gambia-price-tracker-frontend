@@ -5,6 +5,15 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// Attach token to every request
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export const getCrops = () => api.get("/crops");
 export const getMarkets = () => api.get("/markets");
 export const getPrices = () => api.get("/prices");
