@@ -31,6 +31,7 @@ export default function Home() {
       getPricesByCrop(selectedCrop).then((res) => setPrices(res.data));
     }
   }, [selectedCrop]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
@@ -79,6 +80,29 @@ export default function Home() {
             {/* Price table */}
             <PriceTable prices={prices} />
 
+            {/* Pagination */}
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-xs text-gray-400">
+                Page {currentPage} of {lastPage}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setCurrentPage((p) => p - 1)}
+                  disabled={currentPage === 1}
+                  className="text-sm border border-gray-200 px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => setCurrentPage((p) => p + 1)}
+                  disabled={currentPage === lastPage}
+                  className="text-sm border border-gray-200 px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+
             {/* Charts */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               <BarChart prices={prices} />
@@ -86,28 +110,6 @@ export default function Home() {
             </div>
           </>
         )}
-      </div>
-      {/* Pagination */}
-      <div className="flex items-center justify-between mt-4">
-        <p className="text-xs text-gray-400">
-          Page {currentPage} of {lastPage}
-        </p>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setCurrentPage((p) => p - 1)}
-            disabled={currentPage === 1}
-            className="text-sm border border-gray-200 px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => setCurrentPage((p) => p + 1)}
-            disabled={currentPage === lastPage}
-            className="text-sm border border-gray-200 px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-          >
-            Next
-          </button>
-        </div>
       </div>
 
       {/* Footer */}
