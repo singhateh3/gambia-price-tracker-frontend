@@ -16,7 +16,7 @@ api.interceptors.request.use((config) => {
 
 export const getCrops = () => api.get("/crops");
 export const getMarkets = () => api.get("/markets");
-export const getPrices = () => api.get("/prices");
+export const getPrices = (page = 1) => api.get(`/prices?page=${page}`);
 export const getPricesByCrop = (cropId) => api.get(`/prices/${cropId}`);
 
 // This keeps all your API calls in one place. If your Laravel URL ever changes, you only update baseURL here.
