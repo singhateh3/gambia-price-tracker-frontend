@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "https://gambia-price-tracker.onrender.com/api",
   // baseURL: "http://localhost:8000/api",
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 // Attach token to every request
